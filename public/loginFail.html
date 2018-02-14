@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/styles.css">
+<title>Home | Chat App </title>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    </head>
+    <body class="centered-form">
+        <div class="centered-form__form">
+            <form action="/login" method="POST">
+                <div class="form-field"><h3>Register</h3></div>
+                <div class="form-field"><label>Username</label>
+                <input type="text" name="username" autofocus/></div>
+                <div class="form-field"><label>Enter Password</label>
+<input type="password" name="password" /></div>
+                <div class="form-field">
+                <button>Login</button></div>
+                <a href="/signup">Register account</a><br>
+            </form>
+        </div>
+        
+    </body>
+    <script>alert("Login failed. Try again");
+    window.location="/";
+    </script>
+</html>

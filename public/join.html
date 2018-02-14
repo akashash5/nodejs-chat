@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/styles.css">
+<title>Join | Chat App </title>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    </head>
+    <body class="centered-form">
+        <div class="centered-form__form">
+            <form action="/chat.html">
+                <div class="form-field"><h3>Join a chat</h3></div>
+                <div class="form-field"><label>Display name</label>
+                <input type="text" id="uname" name="name" readonly/></div>
+                <div class="form-field"><label>Room name</label>
+                <input type="text" id ="rname" name="room" autofocus/></div>
+                <div class="form-field">
+                <button>Join</button></div>
+               
+                </form>
+                 <center><button type="button" onclick="location.href='/';">Logout</button>
+  </center></br>
+                <p id="rooms"></p>
+        </div>
+<script src="/jquery-3.2.1.min.js"></script>
+<script>
+    function insert(data){
+$("#rname").attr("value",data);
+console.log(data);
+}
+$(document).ready(function() {
+    $.getJSON("api/user_data", function(data) {
+        console.log('Test');
+        console.log('Username: ' + JSON.stringify(data.username));
+        $("#uname").attr("value",data.username);
+    })
+     $.getJSON("api/room_data", function(data) {
+        
+        console.log('Rooms: ' + JSON.stringify(data));
+        if(data!=[])
+        {
+            var r=jQuery('#rooms');
+            var roomsArray=JSON.parse(data);
+            console.log(roomsArray);
+            var ht="<h4>Active rooms:</h4> </br>";
+            roomsArray.forEach(function(ele) {
+               
+               ht+=' <button onlick="insert(\'' + ele + '\')">'+ele+'</button></br>'; 
+            }, this);
+            console.log(ht);
+            r.append(ht);
+        }
+    })
+}
+
+);
+
+
+</script>        
+        
+    </body>
+</html>
